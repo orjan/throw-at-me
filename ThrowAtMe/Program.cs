@@ -1,5 +1,4 @@
 ﻿using System;
-using Nancy;
 using Nancy.Hosting.Self;
 using Raven.Client;
 using Raven.Client.Embedded;
@@ -34,7 +33,4 @@ namespace ThrowAtMe
             nancyHost.Stop();
         }
     }
-
-    
-    
 }

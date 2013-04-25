@@ -11,6 +11,8 @@ namespace ThrowAtMe.Modules
         public LogModule()
             : base("/log")
         {
+            this.EnableCors();
+
             Get["/"] = parameters => { return HttpStatusCode.OK; };
 
             Post["/"] = parameters =>
@@ -23,7 +25,7 @@ namespace ThrowAtMe.Modules
                                     session.SaveChanges();
                                 }
 
-                                Console.WriteLine(log.LineNumber);
+                                Console.WriteLine(log.ToString());
 
                                 return HttpStatusCode.OK;
                             };

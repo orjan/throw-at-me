@@ -7,6 +7,7 @@ namespace ThrowAtMe.Modules
         public IndexModule()
         {
             Get["/"] = parameters => "Simple javascript error logger";
+
         }
     }
 }
