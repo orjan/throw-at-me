@@ -14,15 +14,17 @@
         var request = $.ajax({
             url: url,
             type: "post",
-            data: log
+            data: log,
+            dataType: "json"
         });
 
         request.fail(function (jqXhr, textStatus, errorThrown) {
-            error("Couldn't store log", textStatus, errorThrown);
+            //error("Couldn't store log", textStatus, errorThrown);
         });
     };
 
     window.onerror = function (errorMessage, errorUrl, lineNumber) {
+        console.log("error...");
         reportError("window.onerror", errorMessage, errorUrl, lineNumber);
 
         return false;

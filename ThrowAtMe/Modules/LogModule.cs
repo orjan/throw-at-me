@@ -12,6 +12,7 @@ namespace ThrowAtMe.Modules
             : base("/log")
         {
             this.EnableCors();
+            this.
 
             Get["/"] = parameters => { return HttpStatusCode.OK; };
 

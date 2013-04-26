@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Nancy.Hosting.Self;
 using Raven.Client;
 using Raven.Client.Embedded;
@@ -10,6 +11,15 @@ namespace ThrowAtMe
     {
         public static IDocumentStore DocumentStore;
 
+        public static int NancyPort
+        {
+            get { return int.Parse(ConfigurationManager.AppSettings["ThrowAtMe/Port"]); }
+        }
+        
+        public static int RavenPort {
+            get { return int.Parse(ConfigurationManager.AppSettings["Raven/Port"]); }
+        }
+
         /// <summary>
         ///     https://github.com/NancyFx/Nancy/wiki/Self-Hosting-Nancy
         ///     netsh http add urlacl url=http://+:1234/ user=DOMAIN\username
@@ -17,16 +27,17 @@ namespace ThrowAtMe
         /// <param name="args"></param>
         private static void Main(string[] args)
         {
-            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(8081);
-            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(1234);
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(RavenPort);
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(NancyPort);
 
             DocumentStore = new EmbeddableDocumentStore()
                                 {
-                                    RunInMemory = true, UseEmbeddedHttpServer = true
+                                    ConnectionStringName = "ThrowAtMeRaven",
+                                    UseEmbeddedHttpServer = true
                                 };
             DocumentStore.Initialize();
 
-            var nancyHost = new NancyHost(new Uri("http://localhost:1234"));
+            var nancyHost = new NancyHost(new Uri("http://localhost:" + NancyPort));
             nancyHost.Start();
 
             Console.ReadLine();
