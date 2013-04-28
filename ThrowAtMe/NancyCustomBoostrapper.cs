@@ -12,6 +12,7 @@ namespace ThrowAtMe
             conventions.StaticContentsConventions.Add(
                 StaticContentConventionBuilder.AddDirectory("assets", @"Assets")
                 );
+            
         }
     }
 }

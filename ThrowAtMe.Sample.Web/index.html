@@ -29,5 +29,11 @@
             console.error("Simple Error");
             console.error("Double", "Error");
         </script>
+        
+        <form action="http://localhost:1234/log" method="POST">
+            <input name="ErrorMessage" type="text" />
+            <input name="LogType"  type="text" />
+            <button type="submit">DO stuff...</button>
+        </form>
     </body>
 </html>

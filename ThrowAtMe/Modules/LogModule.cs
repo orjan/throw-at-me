@@ -12,13 +12,12 @@ namespace ThrowAtMe.Modules
             : base("/log")
         {
             this.EnableCors();
-            this.
 
             Get["/"] = parameters => { return HttpStatusCode.OK; };
 
             Post["/"] = parameters =>
                             {
-                                var log = this.Bind<LogMessage>(new[] {"Id"});
+                                var log = this.Bind<LogMessage>(new[] { "Id", "LogDate" });
 
                                 using (IDocumentSession session = Program.DocumentStore.OpenSession())
                                 {

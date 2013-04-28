@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+    <script src="http://localhost:1234/assets/jQuery.XDomainRequest.js"></script>
+    <script src="http://localhost:1234/assets/capture-errors.js"></script>
+    <script>
+        captureErrors.init("http://localhost:1234/log", true);
+    </script>
+</head>
+    <body>
+        <h1 id="main">This is a sample of how we can catch and log javascript errors...</h1>
+        <script>
+            throw "Catch me if you can..."
+        </script>
+               
+    </body>
+</html>
