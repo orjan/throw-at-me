@@ -3,15 +3,17 @@ using System.IO;
 using Nancy;
 using Nancy.Extensions;
 using Nancy.ModelBinding;
-using ThrowAtMe.Models;
 
-namespace ThrowAtMe.Modules
+namespace ThrowAtMe.Models
 {
-    public class LogmessageBinder : IModelBinder
+    /// <summary>
+    ///     The custom binder is needed since XDomainRequest won't provide a ContentType
+    /// </summary>
+    public class LogMessageBinder : IModelBinder
     {
         private readonly IBinder defaultBinder;
 
-        public LogmessageBinder(IBinder defaultBinder)
+        public LogMessageBinder(IBinder defaultBinder)
         {
             this.defaultBinder = defaultBinder;
         }
@@ -33,16 +35,19 @@ namespace ThrowAtMe.Modules
                 context.Request.Body.Position = 0;
             }
 
-            var logMessage = new LogMessage()
+            var logMessage = new LogMessage
                                  {
-                                     ErrorMessage = body["ErrorMessage"], LineNumber = body["LineNumber"], LogType = body["LogType"], Url = body["Url"]
+                                     ErrorMessage = body["ErrorMessage"],
+                                     LineNumber = body["LineNumber"],
+                                     LogType = body["LogType"],
+                                     Url = body["Url"]
                                  };
             return logMessage;
         }
 
         public bool CanBind(Type modelType)
         {
-            if (typeof(LogMessage) == modelType)
+            if (typeof (LogMessage) == modelType)
             {
                 return true;
             }

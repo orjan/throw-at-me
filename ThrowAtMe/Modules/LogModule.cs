@@ -13,8 +13,6 @@ namespace ThrowAtMe.Modules
         {
             this.EnableCors();
 
-            Get["/"] = parameters => { return HttpStatusCode.OK; };
-
             Post["/"] = parameters =>
                             {
                                 var log = this.Bind<LogMessage>(new[] { "Id", "LogDate" });

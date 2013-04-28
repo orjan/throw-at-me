@@ -11,15 +11,11 @@
             "LogType": logType
         };
 
-        var request = $.ajax({
+        $.ajax({
             url: url,
             type: "post",
             data: log,
             dataType: "json"
-        });
-
-        request.fail(function (jqXhr, textStatus, errorThrown) {
-            //error("Couldn't store log", textStatus, errorThrown);
         });
     };
 

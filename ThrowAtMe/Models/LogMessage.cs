@@ -17,11 +17,9 @@ namespace ThrowAtMe.Models
         public string Url { get; set; }
         public int LineNumber { get; set; }
 
-        
-
         public override string ToString()
         {
-            return string.Format("ErrorMessage: {0}, Url: {1}, LineNumber: {2}", ErrorMessage, Url, LineNumber);
+            return string.Format("LogDate: {0}, LogType: {1}, ErrorMessage: {2}, Url: {3}, LineNumber: {4}", LogDate, LogType, ErrorMessage, Url, LineNumber);
         }
     }
 }
