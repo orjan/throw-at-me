@@ -17,7 +17,7 @@ namespace ThrowAtMe.Modules
                             {
                                 var log = this.Bind<LogMessage>(new[] { "Id", "LogDate" });
 
-                                using (IDocumentSession session = Program.DocumentStore.OpenSession())
+                                using (IDocumentSession session = ThrowAtMeApplication.DocumentStore.OpenSession())
                                 {
                                     session.Store(log);
                                     session.SaveChanges();

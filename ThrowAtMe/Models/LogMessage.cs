@@ -19,7 +19,7 @@ namespace ThrowAtMe.Models
 
         public override string ToString()
         {
-            return string.Format("LogDate: {0}, LogType: {1}, ErrorMessage: {2}, Url: {3}, LineNumber: {4}", LogDate, LogType, ErrorMessage, Url, LineNumber);
+            return string.Format("{0} [{1}] {2}", LogDate, LogType, ErrorMessage);
         }
     }
 }
